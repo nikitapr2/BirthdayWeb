@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Happy Birthday Cutiee 🎀</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg1:#ffe3ee;--bg2:#ffc2d9;--card:#fffafcdd;--ink:#7a1f4a;--accent:#ff4d94;--soft:#ff8fbd;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg1:#3a1228;--bg2:#5a1b3d;--card:#4a1a35dd;--ink:#ffd6e8;--accent:#ff6fae;--soft:#ff8fbd}}
+:root[data-theme="dark"]{--bg1:#3a1228;--bg2:#5a1b3d;--card:#4a1a35dd;--ink:#ffd6e8;--accent:#ff6fae;--soft:#ff8fbd}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;min-height:100vh;font-family:'Poppins',system-ui,sans-serif;color:var(--ink);background:linear-gradient(160deg,var(--bg1),var(--bg2));text-align:center;overflow-x:hidden}
+.wrap{max-width:560px;margin:0 auto;padding:28px 18px 60px;position:relative;z-index:2}
+.date{display:inline-block;background:var(--accent);color:#fff;border-radius:99px;padding:6px 16px;font-size:14px;font-weight:600;letter-spacing:1px}
+h1{font-family:'Pacifico',cursive,serif;font-weight:400;font-size:clamp(34px,10vw,54px);line-height:1.2;margin:16px 0 4px;color:var(--accent)}
+.sub{font-size:16px;margin:0 0 18px}
+.card{background:var(--card);border-radius:26px;padding:22px 20px;margin:18px 0;box-shadow:0 10px 30px #ff4d9433;backdrop-filter:blur(6px)}
+.cake{position:relative;width:200px;margin:30px auto 8px}
+.candles{display:flex;justify-content:center;gap:26px;height:56px;align-items:flex-end}
+.candle{width:12px;height:38px;background:repeating-linear-gradient(45deg,#fff 0 6px,#ff8fbd 6px 12px);border-radius:4px;position:relative}
+.flame{position:absolute;left:50%;top:-22px;width:14px;height:22px;margin-left:-7px;background:radial-gradient(circle at 50% 70%,#fff6a8,#ffb300 70%);border-radius:50% 50% 50% 50%/60% 60% 40% 40%;animation:flick .4s infinite alternate;transition:opacity .3s,transform .3s}
+.out .flame{opacity:0;transform:scale(0)}
+@keyframes flick{from{transform:scale(1) rotate(-4deg)}to{transform:scale(1.12) rotate(4deg)}}
+.tier1{height:50px;background:#fff;border-radius:14px 14px 0 0;border-bottom:8px solid var(--soft);position:relative}
+.tier1::before{content:"";position:absolute;inset:0 0 auto 0;height:18px;background:var(--soft);border-radius:14px 14px 50% 50%/14px 14px 100% 100%;opacity:.8}
+.tier2{height:62px;background:#ffd0e3;border-radius:0 0 16px 16px;border-top:6px solid #fff;display:flex;align-items:center;justify-content:center;font-size:22px;letter-spacing:6px}
+button{font:600 15px 'Poppins',system-ui,sans-serif;border:0;border-radius:99px;padding:12px 22px;margin:6px;background:var(--accent);color:#fff;cursor:pointer;box-shadow:0 6px 16px #ff4d9455;transition:transform .15s}
+button:active{transform:scale(.94)}
+button.alt{background:#fff;color:var(--accent)}
+.msg{font-size:16px;line-height:1.7;margin:0}
+.wish{min-height:62px;font-size:17px;font-weight:600;display:flex;align-items:center;justify-content:center;padding:8px}
+.heart{position:fixed;bottom:-30px;z-index:1;pointer-events:none;animation:up linear forwards}
+@keyframes up{to{transform:translateY(-110vh) rotate(30deg);opacity:0}}
+canvas{position:fixed;inset:0;pointer-events:none;z-index:5}
+.foot{font-size:14px;opacity:.85;margin-top:26px}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div class="wrap">
+  <span class="date">13 OCTOBER 🎂</span>
+  <h1>Happy Birthday,<br>Cutiee! 🎀</h1>
+  <p class="sub">Aaj ka din sirf tumhara hai ✨</p>
+
+  <div class="cake" id="cake">
+    <div class="candles"><div class="candle"><i class="flame"></i></div><div class="candle"><i class="flame"></i></div><div class="candle"><i class="flame"></i></div></div>
+    <div class="tier1"></div><div class="tier2">🍓🍓🍓</div>
+  </div>
+  <button id="blow">🕯️ Candles bujhao &amp; wish maango</button>
+
+  <div class="card">
+    <p class="msg">Cutiee, tumhari smile se din bright ho jata hai 🌸<br>
+    Is saal tumhare saare sapne pure ho, dher saari khushiyan mile, aur har din pink-pink aur pyaara guzre 💖<br>
+    Khoob hasna, khoob masti karna aur cake toh pakka khana 🍰<br><br>
+    <b>Many many happy returns of the day! 🥳</b></p>
+  </div>
+
+  <div class="card">
+    <div class="wish" id="wish">Tap karo, ek surprise wish milegi 🎁</div>
+    <button class="alt" id="more">💌 Next wish</button>
+    <button id="boom">🎉 Confetti!</button>
+  </div>
+
+  <p class="foot">Made with 💗 just for you<br><b>From: Ur Love Heart 💖</b></p>
+</div>
+
+<script>
+var wishes=["Tum hamesha aise hi chamakti raho ✨","Is saal sirf achhi khabrein aur meethi yaadein 🍬","Tumhare saare sapne pure hon 🌈","Tum jaisi pyaari insaan koi nahi 🥹💗","Aaj party karo, kal ka kal dekhenge 🥳","Hamesha khush raho, hamesha muskurati raho 😊","Cake, chocolates aur dher saara pyaar tumhare liye 🍫🎂","Tum special ho, aaj bhi aur hamesha bhi 🌸"];
+var wi=-1,wel=document.getElementById('wish');
+function nextWish(){wi=(wi+1)%wishes.length;wel.textContent=wishes[wi];}
+document.getElementById('more').onclick=function(){nextWish();};
+var cv=document.getElementById('c'),cx=cv.getContext('2d'),ps=[];
+function size(){cv.width=innerWidth;cv.height=innerHeight}size();addEventListener('resize',size);
+function boom(){var cols=['#ff4d94','#ff8fbd','#ffd1e3','#fff','#ffb3d1','#ffc94d'];
+for(var i=0;i<140;i++)ps.push({x:cv.width/2,y:cv.height/3,vx:(Math.random()-.5)*14,vy:Math.random()*-12-2,s:Math.random()*7+3,c:cols[i%cols.length],l:120});
+if(!running){running=true;loop();}}
+var running=false;
+function loop(){cx.clearRect(0,0,cv.width,cv.height);
+ps.forEach(function(p){p.x+=p.vx;p.y+=p.vy;p.vy+=.3;p.l--;cx.fillStyle=p.c;cx.globalAlpha=Math.max(p.l/120,0);cx.fillRect(p.x,p.y,p.s,p.s*.6);});
+ps=ps.filter(function(p){return p.l>0});
+if(ps.length)requestAnimationFrame(loop);else{running=false;cx.clearRect(0,0,cv.width,cv.height)}}
+document.getElementById('boom').onclick=boom;
+document.getElementById('blow').onclick=function(){
+var c=document.getElementById('cake');
+if(!c.classList.contains('out')){c.classList.add('out');boom();wel.textContent="Wish maang li? 🤭 Pakka pure hogi! 💫";this.textContent="🕯️ Phir se jalao";}
+else{c.classList.remove('out');this.textContent="🕯️ Candles bujhao & wish maango";}};
+var hs=['💗','🎀','🌸','💖','✨','🍰'];
+setInterval(function(){var h=document.createElement('div');h.className='heart';h.textContent=hs[Math.floor(Math.random()*hs.length)];
+h.style.left=Math.random()*100+'vw';h.style.fontSize=(14+Math.random()*20)+'px';h.style.animationDuration=(6+Math.random()*6)+'s';
+document.body.appendChild(h);setTimeout(function(){h.remove()},12000);},700);
+setTimeout(boom,600);
+</script>
+</body>
+</html>
